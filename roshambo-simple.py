@@ -2,7 +2,7 @@ import unittest
 
 verbose = False
 
-class Roshambo(unittest.TestCase):
+class Roshambo():
   #choices = {0: "rock", 1: "paper", 2: "scissors"}
   choices = {0: "rock", 1: "spock", 2: "paper", 3: "lizard",4: "scissors"}
   player_names = {0: "Tie", 1: "Player A", 2: "Player B"}
@@ -44,29 +44,37 @@ class Roshambo(unittest.TestCase):
 
     return winning_player
 
+class RoshamboTester(unittest.TestCase):
+
   def test_paper_rules(self):
-    self.assertEqual(self.simulate_game('paper', 'paper'), self.player_names[0])
-    self.assertEqual(self.simulate_game('paper', 'scissors'), self.player_names[2])
-    self.assertEqual(self.simulate_game('paper', 'lizard'), self.player_names[2])
-    self.assertEqual(self.simulate_game('paper', 'spock'), self.player_names[1])
+    roshambo = Roshambo()
+    self.assertEqual(roshambo.simulate_game('paper', 'paper'), roshambo.player_names[0])
+    self.assertEqual(roshambo.simulate_game('paper', 'scissors'), roshambo.player_names[2])
+    self.assertEqual(roshambo.simulate_game('paper', 'lizard'), roshambo.player_names[2])
+    self.assertEqual(roshambo.simulate_game('paper', 'spock'), roshambo.player_names[1])
 
   def test_rock_rules(self):
-    self.assertEqual(self.simulate_game('rock', 'rock'), self.player_names[0])
-    self.assertEqual(self.simulate_game('rock', 'scissors'), self.player_names[1])
-    self.assertEqual(self.simulate_game('rock', 'paper'), self.player_names[2])
-    self.assertEqual(self.simulate_game('rock', 'lizard'), self.player_names[1])
-    self.assertEqual(self.simulate_game('rock', 'spock'), self.player_names[2])
+    roshambo = Roshambo()
+    self.assertEqual(roshambo.simulate_game('rock', 'rock'), roshambo.player_names[0])
+    self.assertEqual(roshambo.simulate_game('rock', 'scissors'), roshambo.player_names[1])
+    self.assertEqual(roshambo.simulate_game('rock', 'paper'), roshambo.player_names[2])
+    self.assertEqual(roshambo.simulate_game('rock', 'lizard'), roshambo.player_names[1])
+    self.assertEqual(roshambo.simulate_game('rock', 'spock'), roshambo.player_names[2])
 
   def test_scissors_rules(self):
-    self.assertEqual(self.simulate_game('scissors', 'lizard'), self.player_names[1])
-    self.assertEqual(self.simulate_game('scissors', 'spock'), self.player_names[2])
-    self.assertEqual(self.simulate_game('scissors', 'scissors'), self.player_names[0])
+    roshambo = Roshambo()
+    self.assertEqual(roshambo.simulate_game('scissors', 'lizard'), roshambo.player_names[1])
+    self.assertEqual(roshambo.simulate_game('scissors', 'spock'), roshambo.player_names[2])
+    self.assertEqual(roshambo.simulate_game('scissors', 'scissors'), roshambo.player_names[0])
 
   def test_lizard_rules(self):
-    self.assertEqual(self.simulate_game('lizard', 'lizard'), self.player_names[0])
-    self.assertEqual(self.simulate_game('lizard', 'spock'), self.player_names[1])
+    roshambo = Roshambo()
+    self.assertEqual(roshambo.simulate_game('lizard', 'lizard'), roshambo.player_names[0])
+    self.assertEqual(roshambo.simulate_game('lizard', 'spock'), roshambo.player_names[1])
+
   def test_spock_rules(self):
-    self.assertEqual(self.simulate_game('spock', 'spock'), self.player_names[0])
+    roshambo = Roshambo()
+    self.assertEqual(roshambo.simulate_game('spock', 'spock'), roshambo.player_names[0])
 
 if __name__ == '__main__':
   unittest.main()
