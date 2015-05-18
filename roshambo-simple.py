@@ -44,59 +44,29 @@ class Roshambo(unittest.TestCase):
 
     return winning_player
 
-  def test_rules(self):
+  def test_paper_rules(self):
+    self.assertEqual(self.simulate_game('paper', 'paper'), self.player_names[0])
+    self.assertEqual(self.simulate_game('paper', 'scissors'), self.player_names[2])
+    self.assertEqual(self.simulate_game('paper', 'lizard'), self.player_names[2])
+    self.assertEqual(self.simulate_game('paper', 'spock'), self.player_names[1])
+
+  def test_rock_rules(self):
     self.assertEqual(self.simulate_game('rock', 'rock'), self.player_names[0])
     self.assertEqual(self.simulate_game('rock', 'scissors'), self.player_names[1])
     self.assertEqual(self.simulate_game('rock', 'paper'), self.player_names[2])
     self.assertEqual(self.simulate_game('rock', 'lizard'), self.player_names[1])
     self.assertEqual(self.simulate_game('rock', 'spock'), self.player_names[2])
 
-    self.assertEqual(self.simulate_game('paper', 'paper'), self.player_names[0])
-    self.assertEqual(self.simulate_game('paper', 'scissors'), self.player_names[2])
-    self.assertEqual(self.simulate_game('paper', 'lizard'), self.player_names[2])
-    self.assertEqual(self.simulate_game('paper', 'spock'), self.player_names[1])
-
+  def test_scissors_rules(self):
     self.assertEqual(self.simulate_game('scissors', 'lizard'), self.player_names[1])
     self.assertEqual(self.simulate_game('scissors', 'spock'), self.player_names[2])
     self.assertEqual(self.simulate_game('scissors', 'scissors'), self.player_names[0])
 
+  def test_lizard_rules(self):
     self.assertEqual(self.simulate_game('lizard', 'lizard'), self.player_names[0])
     self.assertEqual(self.simulate_game('lizard', 'spock'), self.player_names[1])
-
+  def test_spock_rules(self):
     self.assertEqual(self.simulate_game('spock', 'spock'), self.player_names[0])
-
-    """
-    TODO: fix winner check
-    self.assertEqual(self.simulate_game('rock', 'rock'), self.player_names[0])
-    self.assertEqual(self.simulate_game('scissors', 'rock'), self.player_names[1])
-    self.assertEqual(self.simulate_game('paper', 'rock'), self.player_names[2])
-    self.assertEqual(self.simulate_game('lizard', 'rock'), self.player_names[1])
-    self.assertEqual(self.simulate_game('spock', 'rock'), self.player_names[2])
-
-    self.assertEqual(self.simulate_game('paper', 'paper'), self.player_names[0])
-    self.assertEqual(self.simulate_game('scissors', 'paper'), self.player_names[2])
-    self.assertEqual(self.simulate_game('lizard', 'paper'), self.player_names[2])
-    self.assertEqual(self.simulate_game('spock', 'paper'), self.player_names[1])
-
-    self.assertEqual(self.simulate_game('spock', 'scissors'), self.player_names[1])
-    self.assertEqual(self.simulate_game('lizard', 'scissors'), self.player_names[2])
-    self.assertEqual(self.simulate_game('scissors', 'scissors'), self.player_names[0])
-
-    self.assertEqual(self.simulate_game('spock', 'lizard'), self.player_names[0])
-    self.assertEqual(self.simulate_game('lizard', 'lizard'), self.player_names[1])
-
-    self.assertEqual(self.simulate_game('spock', 'spock'), self.player_names[0])
-    """
 
 if __name__ == '__main__':
   unittest.main()
-
-"""
-for player_val in range(1,num_choices+1):
-  for computer_val in range(1,num_choices+1):
-    print "Player:", number_to_name(player_val)
-    print "Computer:", number_to_name(computer_val)
-    winning_player, winning_choice = winner(player_val, computer_val)
-    print "Winner:", winning_player, winning_choice
-    print "------------------------------------------"
-"""
